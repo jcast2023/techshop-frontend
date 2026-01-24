@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg fixed-top custom-navbar">
+  <div class="container">
+    <a routerLink="/" class="navbar-brand fw-bold">
+      <span class="brand-tech">Tech</span>Shop
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link" routerLinkActive="active">Inicio</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin">
+          <a class="nav-link admin-link" routerLink="/admin/dashboard" routerLinkActive="active">
+            <i class="bi bi-speedometer2"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/productos" class="nav-link" routerLinkActive="active">Productos</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/carrito" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-cart3"></i> Carrito
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isLoggedIn">
+          <a routerLink="/mis-pedidos" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-box-seam"></i> Mis Pedidos
+          </a>
+        </li>
+      </ul>
+
+      <div class="d-flex align-items-center">
+        <ng-container *ngIf="authService.isLoggedIn; else guestButtons">
+          <span class="me-3 user-welcome d-none d-lg-inline">
+            Hola, <strong>{{ username }}</strong>
+          </span>
+          <button class="btn btn-logout" (click)="logout()">
+            <i class="bi bi-box-arrow-right"></i> Salir
+          </button>
+        </ng-container>
+
+        <ng-template #guestButtons>
+          <a routerLink="/login" class="btn btn-login me-2">Iniciar Sesión</a>
+          <a routerLink="/register" class="btn btn-register">Registrarme</a>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="nav-spacer"></div>

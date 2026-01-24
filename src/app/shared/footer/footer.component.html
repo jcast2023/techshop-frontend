@@ -1,0 +1,57 @@
+<footer class="custom-footer">
+  <div class="container">
+    <div class="row gy-4">
+
+      <div class="col-lg-4 col-md-6">
+        <h5 class="footer-logo fw-bold mb-3 text-primary">TechShop</h5>
+        <p class="text-muted small pe-lg-5">
+          Tu aliado tecnológico en 2026. Calidad garantizada en cada compra y soporte técnico especializado para todos tus dispositivos.
+        </p>
+        <div class="social-links d-flex gap-3 mt-4">
+          <a href="#"><i class="bi bi-facebook"></i></a>
+          <a href="#"><i class="bi bi-instagram"></i></a>
+          <a href="#"><i class="bi bi-twitter-x"></i></a>
+          <a href="#"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-2 col-md-6">
+        <h6 class="fw-bold mb-3 text-uppercase small">Servicio al Cliente</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a routerLink="/ayuda">Centro de ayuda</a></li>
+          <li><a routerLink="/mis-pedidos">Seguimiento de pedido</a></li>
+          <li><a routerLink="/devoluciones">Cambios y devoluciones</a></li>
+          <li><a routerLink="/terminos">Términos y Condiciones</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-2 col-md-6">
+        <h6 class="fw-bold mb-3 text-uppercase small">Categorías</h6>
+        <ul class="list-unstyled footer-links">
+          <li><a [routerLink]="['/productos']" [queryParams]="{ cat: 'Laptops' }">Laptops</a></li>
+          <li><a [routerLink]="['/productos']" [queryParams]="{ cat: 'Celulares' }">Celulares</a></li>
+          <li><a [routerLink]="['/productos']" [queryParams]="{ cat: 'Accesorios' }">Accesorios</a></li>
+          <li><a [routerLink]="['/productos']" [queryParams]="{ cat: 'Monitores' }">Monitores</a></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <h6 class="fw-bold mb-3 text-uppercase small">Newsletter</h6>
+        <p class="text-muted small">Suscríbete para recibir ofertas exclusivas.</p>
+        <div class="input-group newsletter-group mt-3">
+          <input type="email" class="form-control" placeholder="Tu correo" [(ngModel)]="emailNewsletter" #emailInput="ngModel" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+          <button class="btn btn-primary" type="button" (click)="suscribir()" [disabled]="emailInput.invalid"> UNIRSE </button>
+        </div>
+        <small class="text-danger d-block mt-2" *ngIf="emailInput.invalid && emailInput.dirty">
+          Formato de correo inválido.
+        </small>
+      </div>
+    </div>
+
+    <hr class="my-5 opacity-10">
+
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center gap-3">
+      <p class="mb-0 text-muted small">&copy; 2026 TechShop. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>

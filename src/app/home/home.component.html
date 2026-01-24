@@ -1,0 +1,62 @@
+<div class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <h1 class="display-3 fw-bold">Tecnología de Vanguardia</h1>
+    <p class="lead">Las mejores marcas con precios de liquidación.</p>
+    <a routerLink="/productos" class="btn btn-comprar btn-lg mt-3 shadow">Ver Ofertas</a>
+  </div>
+</div>
+
+<div class="container my-5">
+  <h2 class="text-center fw-bold mb-5">Explora nuestros mundos</h2>
+
+  <div class="row g-4">
+    <div class="col-lg-8">
+      <div class="category-block main-block-large" style="background-image: url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853?q=80&w=1200');">
+        <div class="block-overlay"></div>
+        <div class="block-text">
+          <span class="badge bg-danger mb-2">HOT DEAL</span>
+          <h2 class="display-4 fw-bold">MUNDO LAPTOPS</h2>
+          <p class="fs-5">Hasta 30% dscto en marcas seleccionadas.</p>
+          <a [routerLink]="['/productos']" [queryParams]="{ cat: 'Laptops' }" class="category-link">
+            Explorar Todo <i class="bi bi-chevron-right ms-2"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 d-flex flex-column gap-4">
+
+      <div class="category-block side-block-equal" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=500');">
+        <div class="block-overlay"></div>
+        <div class="block-text">
+          <h4>CELULARES</h4>
+          <a [routerLink]="['/productos']" [queryParams]="{ cat: 'Celulares' }" class="category-link">
+            Comprar ahora <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="category-block side-block-equal" style="background-image: url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=500');">
+        <div class="block-overlay"></div>
+        <div class="block-text">
+          <h4>ACCESORIOS</h4>
+          <a [routerLink]="['/productos']" [queryParams]="{ cat: 'Accesorios' }" class="category-link">
+            Ver novedades <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="category-block side-block-equal" style="background-image: url('https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?q=80&w=500');">
+        <div class="block-overlay"></div>
+        <div class="block-text">
+          <h4>MONITORES</h4>
+          <a [routerLink]="['/productos']" [queryParams]="{ cat: 'Monitores' }" class="category-link">
+            Ver catálogo <i class="bi bi-arrow-right ms-1"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

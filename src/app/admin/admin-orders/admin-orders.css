@@ -1,0 +1,17 @@
+
+.table tbody tr {
+    color: #212529 !important;
+    background-color: #ffffff !important;
+}
+
+
+.badge {
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+
+.bg-info {
+    color: #000 !important;
+}

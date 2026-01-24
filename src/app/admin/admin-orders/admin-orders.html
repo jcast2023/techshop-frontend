@@ -1,0 +1,83 @@
+<div class="container mt-5">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2><i class="bi bi-cart-check"></i> Gestión Global de Pedidos</h2>
+    <button class="btn btn-secondary" routerLink="/admin/dashboard">Volver al Dashboard</button>
+  </div>
+
+  <div class="row mb-3">
+  <div class="col-md-6">
+    <div class="input-group">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text"
+             class="form-control"
+             placeholder="Buscar por ID o Email..."
+             [(ngModel)]="terminoBusqueda"
+             (input)="filtrarPedidos()">
+    </div>
+  </div>
+</div>
+
+  <div class="card shadow">
+    <div class="card-body">
+      <div *ngIf="cargando" class="text-center p-5">
+        <div class="spinner-border text-primary" role="status"></div>
+        <p>Cargando pedidos del sistema...</p>
+      </div>
+
+      <div class="table-responsive" *ngIf="!cargando">
+        <table class="table table-hover align-middle">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Cliente (Email)</th>
+              <th>Fecha</th>
+              <th>Total</th>
+              <th class="text-center">Estado y Acciones</th> </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of pedidosFiltrados">
+              <td><strong>#{{ pedido.idPedido }}</strong></td>
+              <td class="text-muted">
+                  {{ pedido.emailUsuario || 'ID Cliente: ' + pedido.idUsuario }}
+              </td>
+              <td>{{ pedido.fechaPedido | date:'dd/MM/yyyy HH:mm' }}</td>
+              <td class="text-success fw-bold">${{ pedido.total | number:'1.2-2' }}</td>
+
+              <td class="text-center">
+                <div class="d-flex flex-column align-items-center gap-2">
+
+                  <span class="badge px-3 py-2"
+      [ngClass]="{
+        'bg-warning text-dark': pedido.estado === 'PENDIENTE',
+        'bg-success text-white': pedido.estado === 'PAGADO',
+        'bg-primary text-white': pedido.estado === 'ENVIADO'
+      }">
+  {{ pedido.estado }}
+</span>
+
+                  <div class="d-flex gap-2">
+                    <button (click)="descargarFactura(pedido.idPedido)" class="btn btn-sm btn-danger">
+                      <i class="bi bi-file-pdf"></i>
+                    </button>
+
+                    <button *ngIf="pedido.estado === 'PAGADO'"
+                            (click)="actualizarEstado(pedido.idPedido, 'ENVIADO')"
+                            class="btn btn-sm btn-outline-primary"
+                            title="Marcar como enviado">
+                      <i class="bi bi-truck"></i> Despachar
+                    </button>
+                  </div>
+
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="!cargando && pedidos.length === 0" class="alert alert-info text-center">
+        No se han registrado pedidos en la tienda todavía.
+      </div>
+    </div>
+  </div>
+</div>

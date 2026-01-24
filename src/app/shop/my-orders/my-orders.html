@@ -1,0 +1,61 @@
+<table class="table table-striped" *ngIf="!cargando && pedidos.length > 0">
+  <thead class="table-dark">
+    <tr>
+      <th>ID Pedido</th>
+      <th>Fecha</th>
+      <th>Total</th>
+      <th>Estado</th>
+      <th>Acciones</th> </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let p of pedidos">
+      <tr>
+        <td data-label="ID Pedido">#{{ p.idPedido }}</td>
+        <td data-label="Fecha">{{ p.fechaPedido | date:'dd/MM/yyyy HH:mm' }}</td>
+        <td data-label="Total">${{ p.total | number:'1.2-2' }}</td>
+        <td data-label="Estado">
+  <span class="badge px-2 py-1"
+        [ngClass]="{
+          'bg-success text-white': p.estado === 'PAGADO',
+          'bg-warning text-dark': p.estado === 'PENDIENTE_PAGO' || p.estado === 'PENDIENTE',
+          'bg-primary text-white': p.estado === 'ENVIADO'
+        }">
+    {{ p.estado }}
+  </span>
+</td>
+        <td data-label="Acciones">
+          <button class="btn btn-sm btn-info text-white" (click)="p.verDetalle = !p.verDetalle">
+            {{ p.verDetalle ? 'Cerrar' : 'Productos' }}
+          </button>
+          <button class="btn btn-danger btn-sm ms-2" (click)="descargarFactura(p.idPedido)">
+            <i class="fa fa-file-pdf"></i> PDF
+          </button>
+        </td>
+      </tr>
+
+      <tr *ngIf="p.verDetalle">
+        <td colspan="5" class="bg-light p-0"> <div class="p-3">
+            <h6 class="fw-bold border-bottom pb-2">Productos en este pedido:</h6>
+            <ul class="list-group list-group-flush">
+              <li *ngFor="let item of p.items" class="list-group-item d-flex justify-content-between align-items-center bg-transparent">
+                <div class="d-flex align-items-center">
+                  <img [src]="item.imagen ? 'assets/productos/' + item.imagen : 'assets/productos/p1.jpg'"
+                       class="img-thumbnail me-3"
+                       style="width: 50px; height: 50px; object-fit: cover;">
+                  <div>
+                    <div class="small text-muted">SKU: {{item.idProducto}}</div>
+                    <strong>{{ item.nombreProducto }}</strong>
+                  </div>
+                </div>
+                <div class="text-end">
+                  <span class="d-block">{{ item.cantidad }} x {{ item.precioUnitario | currency }}</span>
+                  <span class="fw-bold text-primary">{{ (item.cantidad * item.precioUnitario) | currency }}</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

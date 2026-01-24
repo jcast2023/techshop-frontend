@@ -1,0 +1,119 @@
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="fw-bold">📦 Panel de Inventario (ADMIN)</h2>
+    <button class="btn btn-success shadow-sm" data-bs-toggle="modal" data-bs-target="#productoModal">
+      + Nuevo Producto
+    </button>
+  </div>
+
+  <div class="card border-0 shadow-sm">
+    <table class="table table-hover align-middle mb-0 bg-white">
+      <thead class="table-dark">
+        <tr>
+          <th>Vista</th>
+          <th>Producto</th>
+          <th>Categoría</th>
+          <th>Precio</th>
+          <th>Stock Actual</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of productos" class="text-dark">
+          <td>
+  <img [src]="p.imagen ? prodService.getProductImageUrl(p.imagen) : 'assets/productos/p1.jpg'"
+       class="rounded shadow-sm"
+       width="45"
+       height="45"
+       style="object-fit: cover;"
+       onerror="this.src='assets/productos/p1.jpg'">
+</td>
+          <td class="fw-bold">{{ p.nombre }}</td>
+          <td>
+            <span class="badge bg-info text-dark">
+              {{ getNombreCategoria(p) }}
+            </span>
+          </td>
+          <td>{{ p.precio | currency }}</td>
+          <td>
+  <div class="d-flex align-items-center">
+    <span class="me-2 fw-bold text-primary">{{ p.stock }}</span>
+    <span class="text-muted small">unidades</span>
+    <button class="btn btn-sm btn-link p-0 ms-2 text-decoration-none"
+            (click)="actualizarStock(p)"
+            title="Editar stock">
+      📝
+    </button>
+  </div>
+</td>
+          <td>
+            <button class="btn btn-sm btn-outline-danger" (click)="eliminarProducto(p.idProducto)">
+              Borrar
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="productoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title">Registrar Nuevo Producto</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label class="form-label fw-bold">Nombre *</label>
+          <input type="text" class="form-control" [(ngModel)]="nuevoProducto.nombre">
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">Descripción *</label>
+          <textarea class="form-control" [(ngModel)]="nuevoProducto.descripcion" rows="2"></textarea>
+        </div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">Categoría *</label>
+          <select class="form-select" [(ngModel)]="nuevoProducto.id_categoria">
+            <option value="0" disabled>Seleccione una categoría</option>
+            <option value="1">Laptops</option>
+            <option value="2">Celulares</option>
+            <option value="3">Accesorios</option>
+            <option value="7">Monitores</option>
+          </select>
+        </div>
+        <div class="row">
+  <div class="col-6 mb-3">
+    <label class="form-label fw-bold">Precio *</label>
+    <input type="number"
+           class="form-control"
+           [(ngModel)]="nuevoProducto.precio"
+           min="0"
+           step="0.01"
+           onkeydown="return event.keyCode !== 69"> </div>
+
+  <div class="col-6 mb-3">
+    <label class="form-label fw-bold">Stock *</label>
+    <input type="number"
+           class="form-control"
+           [(ngModel)]="nuevoProducto.stock"
+           min="0"
+           step="1"
+           onkeypress="return event.charCode >= 48 && event.charCode <= 57"> </div>
+</div>
+        <div class="mb-3">
+          <label class="form-label fw-bold">Nombre de imagen (ej: samsung.jpg)</label>
+          <input type="text" class="form-control" [(ngModel)]="nuevoProducto.imagen">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal" #closeBtn>Cerrar</button>
+        <button type="button" class="btn btn-success" (click)="guardarNuevoProducto()"
+                [disabled]="!nuevoProducto.nombre || !nuevoProducto.descripcion || nuevoProducto.id_categoria === 0">
+          Guardar Producto
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
