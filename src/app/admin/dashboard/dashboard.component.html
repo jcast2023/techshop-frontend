@@ -5,25 +5,25 @@
     <div class="col-md-3">
       <div class="card border-0 shadow-sm bg-primary text-white p-3">
         <h6>Ventas Totales</h6>
-        <h3 class="fw-bold">{{ stats?.ventasTotales | currency }}</h3>
+        <h3 class="fw-bold">{{ stats.ventasTotales | currency }}</h3>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card border-0 shadow-sm bg-warning text-dark p-3">
         <h6>Pedidos Pagados</h6>
-        <h3 class="fw-bold">{{ stats?.pedidosPendientes }}</h3>
+        <h3 class="fw-bold">{{ stats.pedidosPendientes }}</h3>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card border-0 shadow-sm bg-danger text-white p-3">
         <h6>Stock Crítico (< 5)</h6>
-        <h3 class="fw-bold">{{ stats?.stockCritico }}</h3>
+        <h3 class="fw-bold">{{ stats.stockCritico }}</h3>
       </div>
     </div>
     <div class="col-md-3">
       <div class="card border-0 shadow-sm bg-success text-white p-3">
         <h6>Productos en Catálogo</h6>
-        <h3 class="fw-bold">{{ stats?.totalProductos }}</h3>
+        <h3 class="fw-bold">{{ stats.totalProductos }}</h3>
       </div>
     </div>
   </div>

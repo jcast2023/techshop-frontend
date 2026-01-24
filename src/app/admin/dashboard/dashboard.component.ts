@@ -6,6 +6,13 @@ import { ProductService } from '../../services/product.service';
 import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 
+interface DashboardStats {
+  ventasTotales: number;
+  pedidosPendientes: number;
+  stockCritico: number;
+  totalProductos: number;
+}
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -14,7 +21,7 @@ Chart.register(...registerables);
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  stats: any = {
+stats: DashboardStats = {
     ventasTotales: 0,
     pedidosPendientes: 0,
     stockCritico: 0,
