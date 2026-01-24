@@ -17,8 +17,19 @@ Interfaz de usuario moderna para el sistema de e-commerce TechShop, desarrollada
 * **Flujo de Pago:** Integración completa con el backend de Spring Boot.
 * **Gestión de Sesión:** Autenticación persistente y segura.
 
+## 📊 Panel de Control Administrativo
+Vista previa del dashboard de gestión con indicadores en tiempo real y estadísticas de productos.
+
+![Dashboard de TechShop](src/assets/screenshots/dashboard.png)
+
 ## 🛠️ Instalación
 
 1. Clonar repositorio.
 2. Ejecutar `npm install`.
 3. Iniciar con `npm start` o `ng serve`.
+
+---
+
+## 🔗 Repositorios del Proyecto
+* **Frontend (Este repositorio):** [https://github.com/jcast2023/techshop-frontend](https://github.com/jcast2023/techshop-frontend)
+* **Backend (API Spring Boot):** [https://github.com/jcast2023/techshop-backend](https://github.com/jcast2023/techshop-backend)
